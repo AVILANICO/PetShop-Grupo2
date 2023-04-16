@@ -44,7 +44,25 @@ $contenedor.addEventListener("click", funcionCarrito)
 function crearEventos(eventoSolo){
   let listaCarrito = JSON.parse(localStorage.getItem('listaCarrito')) || []
   let btnClase = listaCarrito.some(prod => prod._id == eventoSolo._id) ? 'btn-warning' : ''
-  return `<div class="card col-11 col-md-4 col-xl-3 ">
+  return `<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${eventoSolo.imagen}" class="img-fluid rounded-start" alt="img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${eventoSolo.producto}</h5>
+        <div class = "div-precioBoton">
+                <p class="card-text"> Precio: $${eventoSolo.precio} </p>
+                <button class="btn border-warning ${btnClase}" data-id="${eventoSolo._id}" >Quitar del Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>`
+
+}
+
+{/* `<div class="card col-11 col-md-4 col-xl-3 ">
             <img id="imgCards" src="${eventoSolo.imagen}" class="card-img-top" alt="img">
             <div class="card-body">
               <h5 class="card-title">${eventoSolo.producto}</h5>
@@ -53,8 +71,7 @@ function crearEventos(eventoSolo){
                 <button class="btn border-warning ${btnClase}" data-id="${eventoSolo._id}" >Quitar del Carrito</button>
               </div>
             </div> 
-          </div>`
-}
+          </div>` */}
 
 function template(arreglo, contenedor){
   if(arreglo.length === 0){
