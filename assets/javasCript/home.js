@@ -1,15 +1,20 @@
 //REFERENCIAS
 const $contenedor = document.getElementById('contenedor-eventos');
+
+
 let arregloProductos;
 
 //paso el string a un array
 let listaCarrito = JSON.parse(localStorage.getItem('listaCarrito')) || []
 
+// console.log(listaCarrito);
+
+
 fetch('https://mindhub-xj03.onrender.com/api/petshop')
     .then(data => data.json())
     .then( res => {
       arregloProductos = res;
-      template(listaCarrito, $contenedor)
+      template(arregloProductos, $contenedor)
     })
     .catch(err => console.log(err))
 
@@ -50,7 +55,7 @@ function crearEventos(eventoSolo){
               <h5 class="card-title">${eventoSolo.producto}</h5>
               <div class = "div-precioBoton">
                 <p class="card-text"> Precio: $${eventoSolo.precio} </p>
-                <button class="btn border-warning ${btnClase}" data-id="${eventoSolo._id}" >Quitar del Carrito</button>
+                <button class="btn border-warning ${btnClase}" data-id="${eventoSolo._id}" >Añadir al carrito</button>
               </div>
             </div> 
           </div>`
