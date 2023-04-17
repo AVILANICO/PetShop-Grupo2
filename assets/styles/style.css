@@ -1,0 +1,124 @@
+:root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+  }
+  
+  main {
+    width: 100%;
+  }
+  
+  .container-fluid {
+    padding: 0;
+  }
+  
+  /* PARALLAX */
+  
+  .parallax {
+    background-image: url("../images/PetFood.jpg");
+    background-repeat: repeat;
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* NAVBAR */
+  
+  .imgnav {
+    width: 9vw;
+    padding-left: 1vw;
+  }
+  
+  .navanch {
+    color: white;
+    font-size: 2.5rem;
+    width: 10rem;
+    font-family: "Smokum", cursive;
+    text-decoration: none;
+    text-align: center;
+    margin: 2rem;
+    border: solid 1px white;
+    border-radius: 0.7rem;
+    background-color: rgb(112, 58, 68);
+  }
+  
+  .navanch-active {
+    color: rgb(112, 58, 68);
+    font-size: 2.5rem;
+    -webkit-text-stroke: 1px white;
+    width: 10rem;
+    background-image: url(../images/paw.png);
+    background-size: cover;
+    font-family: "Smokum", cursive;
+    text-decoration: none;
+    text-align: center;
+    margin: 2rem;
+    border: solid 1px black;
+    border-radius: 0.7rem;
+    background-color: rgb(248, 197, 146);
+  }
+  
+  /* CARROUSEL */
+  
+  .carousel .carousel-item {
+    height: 40vh;
+  }
+  
+  .imageCarrousel {
+    object-fit: contain;
+    object-position: 0% 70%;
+    top: 0;
+    left: 0;
+    min-height: 30vh;
+  }
+  
+  .h1carrousel {
+    color: rgb(112, 58, 68);
+    font-family: "Smokum", cursive;
+    font-size: 7rem;
+    -webkit-text-stroke: 2px black;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* SECTIONS */
+  
+  .section1 {
+    background-image: url("../images/PetAccessories.jpg");
+    background-repeat: repeat;
+    background-color: rgb(248, 197, 146);
+    min-height: 40vh;
+  }
+  
+  .section2 {
+    background-image: url("../images/FoodAndToys.jpg");
+    background-repeat: repeat;
+    background-color: rgb(112, 58, 68);
+    min-height: 40vh;
+  }
+  
+  .section3 {
+    background-image: url("../images/PetAccessories2.jpg");
+    background-repeat: repeat;
+    background-color: rgb(248, 197, 146);
+    min-height: 40vh;
+  }
+  
+  /* FOOTER */
+  
+  footer {
+    background-color: rgb(48, 52, 52);
+    display: flex;
+    height: auto;
+    margin-top: auto;
+  }
+  

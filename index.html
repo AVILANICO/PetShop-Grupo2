@@ -1,12 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perrito Malvado | Home</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="shortcut icon" href="./assets/images/LogoPerritoMalvado.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/2d8f2f427a.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smokum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <title>Perrito Malvado | Home</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <!-- HEADER -->
+      <header>
+        <!-- NAVBAR -->
+        <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+          <div class="container-fluid">
+            <img class="imgnav" src="./assets/images/LogoPerritoMalvado.png" alt="" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+              <form class="d-flex" role="search">
+                <a class="navanch-active" href="#">Inicio</a>
+              </form>
+              <form class="d-flex" role="search">
+                <a class="navanch" href="#">Farmacia</a>
+              </form>
+              <form class="d-flex" role="search">
+                <a class="navanch" href="#">Juguetes</a>
+              </form>
+              <form class="d-flex" role="search">
+                <a class="navanch" href="#">Contacto</a>
+              </form>
+              <form class="d-flex" role="search">
+                <a class="navanch" href="#">Carrito</a>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- MAIN -->
+      <main>
+
+      <!-- CARROUSEL -->
+
+      <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="./assets/images/CarrouselCatDog.png" class="imageCarrousel d-block w-100 cover" alt="" />
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="h1carrousel">PERRITO MALVADO</h1>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="./assets/images/CarruselPerros.png" class="imageCarrousel d-block w-100" alt="" />
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="h1carrousel">PERRITO MALVADO</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/images/CarrouselCats.png" class="imageCarrousel d-block w-100" alt="" />
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="h1carrousel">PERRITO MALVADO</h1>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+        <!-- SECTIONS -->
+        <section class="section1 parallax">
+          <div>
+            <h1>Section 1</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla dolorem, explicabo excepturi beatae adipisci consectetur sit saepe, molestiae quos aspernatur error ipsam in minima rerum hic? Illum ipsam provident velit.</p>
+          </div>
+        </section>
+
+        <section class="section2 parallax">
+          <h1>Section 2</h1>
+        </section>
+
+        <section class="section3 parallax">
+          <h1>Section 3</h1>
+        </section>
+      </main>
+    </div>
+
+    <!--FOOTER -->
+    <footer>
+      <h1>Footer</h1>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
 </html>
