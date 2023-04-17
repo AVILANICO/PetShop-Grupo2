@@ -13,10 +13,15 @@ fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
         
         let openModal = document.querySelectorAll('.openModal')
         let arrayHearts = document.querySelectorAll('.heart')
+        let arrayCarts = document.querySelectorAll('.cart')
+        
 
-        // Ejecuciones
+
+
         modalEvent(openModal, modal, products, modal)
-        changeHearts(arrayHearts)
+        
+        changeColorIcon(arrayHearts, 'redHeart')
+        changeColorIcon(arrayCarts, 'enCarrito')
 
 
         console.log(products)
@@ -62,13 +67,13 @@ function modalTemplate(obj) {
       </p>
       <div class="compraSection gap-4 my-5">
         <div class="cantidades d-flex" >
-          <input class="operador buytStl border-end-0" type="button" value="-">
-          <input class="cantidad buytStl text-center" type="number" value="1">
-          <input class="operador buytStl border-start-0" type="button" value="+">
+          <input class="operador buytStl border-end-0" type="button" value="-" id="resta">
+          <input class="cantidad buytStl text-center" type="number" value="1" id="cantidad">
+          <input class="operador mas buytStl border-start-0" type="button" value="+" id="suma">
         </div>
           <button type="button" class="btn btn-secondary buyBtn w-50">Añadir al carrito</button>
       </div>
-      <p>En stock: <span>${obj.disponibles}</span></p>
+      <p>En stock: <span data-value="${obj.disponibles}" id="enStock">${obj.disponibles}</span></p>
     </div>
   </div>`
 }
@@ -80,19 +85,34 @@ function modalEvent(arrayEle, element, arrayData, container){
             let aux = arrayData.find(prod => prod.producto === ele.id)
             let toPrint = modalTemplate(aux)
             container.innerHTML = toPrint
+            document.body.classList.toggle('removeOverflow')
             let xToCloseModal = document.querySelector('.xToClose')
             xToCloseModal.addEventListener('click', ()=>{
                 container.classList.toggle('mostrarModal')
+                document.body.classList.toggle('removeOverflow')
             })
-        })
-    });
-}
-
-function changeHearts(NodeList) {
-    NodeList.forEach(ele => {
-        ele.addEventListener('click', ()=>{
-            ele.classList.toggle('redHeart')
+            cantidadProductos()
         })
     })
 }
 
+function changeColorIcon(NodeList, addClase) {
+    NodeList.forEach(ele => {
+        ele.addEventListener('click', ()=>{
+            ele.classList.toggle(addClase)
+        })
+    })
+}
+
+function cantidadProductos() {
+    let operadorMas = document.getElementById('suma')
+    let operadorMenos = document.getElementById('resta')
+    let cantidad = document.getElementById('cantidad')
+    let enStock = document.getElementById('enStock')
+    operadorMas.addEventListener('click',()=>{
+        cantidad.value++
+    })
+    operadorMenos.addEventListener('click',()=>{
+        cantidad.value >= 1 ? cantidad.value--: cantidad.value = 0
+    })
+}
