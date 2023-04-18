@@ -11,22 +11,26 @@
 <body>
   <nav>
     <a href="../../index.html">home</a>
+    <a href="./juguetes.html">juguetes</a>
+    <a href="./farmacia.html">farmacia</a>
   </nav>
   <h1>CARRITO</h1>
   <div class="div-main-total">
-    <main class="flex-grow-1 container-fluid d-flex flex-wrap py-5 gap-3 noHayCardH2" id="contenedor-eventos">
+    <main class="noHayCardH2" id="contenedor-eventos">
 
     </main>
-    <div class="resultado">
-      <fieldset>
-        <label for="resultado">TOTAL:</label>
-        <input type="text" name="Resultado" id="resultados" value="">
-      </fieldset>
+    <div class="div-resultado">
+        <div>
+          <label for="cantProductos">Cantidad de productos seleccionados:</label>
+          <input type="text" name="cantidadProductos" id="cantProductos" value="">
+        </div>
+        <div>
+          <label for="resultado">TOTAL:</label>
+          <input type="text" name="Resultado" id="resultados" value="">
+        </div>
+        <button type="button" class="btn btn-success">Comprar Carrito</button>
     </div>
   </div>
-
-  
-
   <script src="../javasCript/carrito.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>

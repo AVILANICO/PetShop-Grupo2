@@ -14,13 +14,18 @@ fetch('https://mindhub-xj03.onrender.com/api/petshop')
     .then(data => data.json())
     .then( res => {
       arregloProductos = res;
-      template(arregloProductos, $contenedor)
+      filtroProductos = filter(arregloProductos)
+      console.log(filtroProductos);
+      template(filtroProductos, $contenedor)
     })
     .catch(err => console.log(err))
 
 //_id, producto, categoria, imagen, precio, disponibles, descripcion
 
 
+function filter(array){
+  return array.filter(i => i.categoria === 'farmacia')
+}
 
 const funcionCarrito = (e) => {
   const id = e.target.dataset.id
@@ -33,7 +38,7 @@ const funcionCarrito = (e) => {
       listaCarrito = listaCarrito.filter(prod => prod._id != id)
     }else{
       //esto se hace solo si no esta en el carrito
-      const evento = arregloProductos.find(e => e._id == id)
+      const evento = filtroProductos.find(e => e._id == id)
       listaCarrito.push(evento)
     }
     console.log(listaCarrito);
