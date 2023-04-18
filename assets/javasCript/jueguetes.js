@@ -1,6 +1,6 @@
 // Referencias
 const $cardsContainer = document.getElementById('cardsContainer')
-let inCart = []
+let listaCarrito = JSON.parse(localStorage.getItem('proInCart')) || []
 
 // Peticion de data a la API
 fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
@@ -9,6 +9,8 @@ fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
         let products = data
         let filteredPrts = filter(products)
         const modal = document.getElementById('modalbg')
+        let searchBar = document.getElementById("search")
+
         printCards(filteredPrts, $cardsContainer)
         
         const openModal = document.querySelectorAll('.openModal')
@@ -19,15 +21,47 @@ fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
         const modalContainer = document.querySelector('.modal_container') 
 
 
-        changeColorIcon(arrayHearts, 'redHeart')
+        changeColorIcon(arrayHearts, filteredPrts, 'redHeart')
         changeColorIcon(arrayCarts, filteredPrts, 'enCarrito')
 
+        searchBar.addEventListener("keyup", ()=>{
 
+            let filteredText= filterByText(filteredPrts,searchBar.value)
+
+            if (searchBar.value == "") {
+                printCards(filteredPrts, $cardsContainer)
+                let openModal = document.querySelectorAll('.openModal')
+                let arrayHearts = document.querySelectorAll('.heart')
+                const arrayCarts = document.querySelectorAll('.cart')
+                modalEvent(openModal, modal, products, modal)
+        
+                changeColorIcon(arrayHearts, filteredPrts, 'redHeart')
+                changeColorIcon(arrayCarts, filteredPrts, 'enCarrito')
+
+                
+            }else{
+                printCards(filteredText, $cardsContainer)
+                let openModal = document.querySelectorAll('.openModal')
+                let arrayHearts = document.querySelectorAll('.heart')
+                const arrayCarts = document.querySelectorAll('.cart')
+                modalEvent(openModal, modal, products, modal)
+                
+                changeColorIcon(arrayHearts, filteredPrts, 'redHeart')
+                changeColorIcon(arrayCarts, filteredPrts, 'enCarrito')
+
+
+            }
+            
+        })
 
     }))
     .catch
 
 // FUNCTIONS
+
+function filterByText(eventArray, text) {
+    return eventArray.filter( event => event.producto.toLowerCase().includes(text.toLowerCase()) || event.descripcion.toLowerCase().includes(text.toLowerCase()) )
+}
 
 function filter(array){
     return array.filter(i => i.categoria === 'jugueteria')
@@ -38,19 +72,31 @@ function printCards(productArray, container) {
 }
 
 function createCards(obj) {
+
+    let listaCarrito = JSON.parse(localStorage.getItem('proInCart')) || []
+    let btnClass = listaCarrito.some(i => i._id === obj._id) ? 'enCarrito' : ''
+
     return `    <div class="cards d-flex align-items-center"  style="background-image: url(${obj.imagen});">
                     <p class="titleProduct">${obj.producto}</p>
                     <div class="none">
                     <div class="menu">
-                        <i class='bx bx-cart-add cart' id="${obj._id}"></i>
+                        <i class='bx bx-cart-add cart ${btnClass}' id="${obj._id}"></i>
                         <i class='bx bx-info-circle openModal' id="${obj.producto}"></i>
-                        <i class='bx bxs-heart back heart'></i>
-                    </div>
-                    </div>
-                </div>`
-}
+                        </div>
+                        </div>
+                        </div>`
+                    }
+                    // <i class='bx bxs-heart back heart'></i>
 
 function modalTemplate(obj) {
+    let menosde5 = ''
+    // obj.disponibles <= 5 && obj.disponibles > 0 ?  menosde5 = '¡Ultimos Productos!' : obj.disponibles == 0 ? menosde5 = '¡No hay productos disponibles!'
+    if(obj.disponibles <= 5 && obj.disponibles > 0){
+    menosde5 = '¡Ultimos Productos!' 
+    }
+    else if(obj.disponibles == 0){
+    menosde5 = '¡No hay productos disponibles!'
+    }
     return `<div class="modal_container">
     <div class="imagen">
       <i class='bx bx-x d-block text-end xToClose fs-1'></i>
@@ -63,15 +109,9 @@ function modalTemplate(obj) {
       <p class="description">
       ${obj.descripcion}
       </p>
-      <div class="compraSection gap-4 my-5">
-        <div class="cantidades d-flex" >
-          <input class="operador buytStl border-end-0" type="button" value="-" id="resta">
-          <input class="cantidad buytStl text-center" type="number" value="1" id="cantidad">
-          <input class="operador mas buytStl border-start-0" type="button" value="+" id="suma">
-        </div>
-          <button type="button" class="btn w-50" id="buyBtn">Añadir al carrito</button>
-      </div>
-      <p id="enStock">En stock: <span data-value="${obj.disponibles}" id="enStock">${obj.disponibles}</span></p>
+      <div class="compraSection gap-4">
+      <p id="enStock" class="m-0 text-center ">Unidades disponibles: <span class="text-primary" data-value="${obj.disponibles}"> ${obj.disponibles} </span></p>
+      <h5 class="m-0 text-danger text-center">${menosde5}</h5>
     </div>
   </div>`
 }
@@ -91,13 +131,6 @@ function modalEvent(arrayEle, element, arrayData, container){
                 document.body.classList.toggle('removeOverflow')
             })
             // const  enSotck = document.getElementById('enStock')
-            let cantidad = document.getElementById('cantidad')
-            const buyBtn = document.getElementById('buyBtn')
-            buyBtn.addEventListener('click', ()=> {
-                aux.disponibles <= cantidad.value ? alert('No hay productos suficientes') : console.log(aux)
-            })
-
-            cantidadProductos()
         })
     })
 }
@@ -108,27 +141,14 @@ function changeColorIcon(NodeList, arrayData, addClase) {
         ele.addEventListener('click', ()=>{
             ele.classList.toggle(addClase)
             let aux = arrayData.find(pro => pro._id === ele.id)
-            let estaEnCarrito = inCart.some(i => i._id === aux._id)
+            let estaEnCarrito = listaCarrito.some(i => i._id === aux._id)
             if(estaEnCarrito){
-               inCart = inCart.filter(i => i._id != aux._id)
-               console.log(inCart)
+                listaCarrito = listaCarrito.filter(i => i._id != aux._id)
+              
             }else {
-                inCart.push(aux)
-                console.log(inCart)
+                listaCarrito.push(aux)
             }
+            localStorage.setItem('proInCart', JSON.stringify(listaCarrito))
         })
-    })
-}
-
-function cantidadProductos() {
-    let operadorMas = document.getElementById('suma')
-    let operadorMenos = document.getElementById('resta')
-    let cantidad = document.getElementById('cantidad')
-    let enStock = document.getElementById('enStock')
-    operadorMas.addEventListener('click',()=>{
-        cantidad.value++
-    })
-    operadorMenos.addEventListener('click',()=>{
-        cantidad.value >= 1 ? cantidad.value--: cantidad.value = 0
     })
 }

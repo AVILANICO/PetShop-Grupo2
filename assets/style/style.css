@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Roboto+Serif:ital,wght@1,100;1,200&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -29,6 +31,9 @@ nav{
     letter-spacing: 5px;
     margin-top: 5rem;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .jugueteria h1 {
@@ -78,6 +83,10 @@ picture img {
 
 /* CARDS JUGUETERIA */
 
+.search{
+    width: 40%;
+}
+
 .cards {
     width: 320px;
     height: 500px;
@@ -113,7 +122,7 @@ picture img {
     visibility: hidden;
   }
 
-  .cards:hover .none, .cards:hover .titleProduct {
+  .cards:hover .none{
     visibility: visible;
     animation: aparecer .2s forwards;
   }
@@ -140,7 +149,6 @@ picture img {
     display: grid;
     place-items: center;
     border-radius: 10px 10px 0 0;
-    visibility: hidden;
 }
 
 
@@ -171,6 +179,7 @@ picture img {
 .modal_container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: auto;
     width: 70%;
     max-width: 500px;
@@ -181,12 +190,13 @@ picture img {
 }
 
 .imagen {
-    height: 55%;
-    overflow: hidden;
+    height: 60%;
+    text-align: center;
+    position: relative;
 }
 
 .imgProd {
-    width: 100%;
+    text-align: center;
     height: 90%;
     object-fit: cover;
 }
@@ -198,6 +208,8 @@ picture img {
 
 .xToClose::before {
     cursor: pointer;
+    position: absolute;
+    right: 0;
 }
 
 .detail {
@@ -207,6 +219,9 @@ picture img {
 
 .titleModal {
     color: #393838;
+    text-align: center;
+    font-family: 'Roboto Serif', serif;
+    font-weight: bold;
 }
 
 .compraSection {
@@ -214,6 +229,8 @@ picture img {
     display: flex;
     justify-content: center;
     align-items: center ;
+    font-size: 25px;
+    margin: 48px 0 0 0;
 }
 
 .operador {
@@ -244,6 +261,12 @@ picture img {
 
 #buyBtn {
     background-color: #F49E09;
+}
+
+#enStock {
+    font-family: 'Roboto Serif', serif;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .buytStl {
@@ -354,4 +377,45 @@ footer {
     .modal_container{
         height: 97%;
     }
+}
+
+.center{
+    height: 5rem;
+    margin: 40px auto;  
+    }
+
+.form-control{
+    text-align: center;
+}
+
+.div-main-total{
+    display: flex;
+    justify-content: space-around;
+}
+
+.div-resultado{
+    position: sticky;
+    top: 5rem;
+    width: 40vw;
+    height: 20vh;
+    background-color: rgba(0, 0, 0, 0.527);
+    border-radius: 3rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#resultado{
+    height: 3rem;
+}
+
+input{
+    width: 5rem;
+}
+
+.ultimas{
+    color: red;
+    font-weight: bold;
 }

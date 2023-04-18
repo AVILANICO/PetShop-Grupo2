@@ -9,14 +9,19 @@ body {
     background-size: cover;
 }
 
+.removeOverflow {
+    overflow: hidden;
+}
+
+/* NAVBAR */
+
 nav{
     background-color: #393838;
     height: 130px;
 }
 
-.search{
-    width: 40%;
-}
+
+/* TITULO */
 
 .farmacia {
     font-family: 'Quicksand', sans-serif;
@@ -41,6 +46,8 @@ nav{
    left: 50%;
    top: 30%;
 }
+
+
 
 picture{
     display: inline-block;
@@ -72,6 +79,11 @@ picture img {
     bottom: -12px;
 }
 
+/* CARDS JUGUETERIA */
+
+.search{
+    width: 40%;
+}
 
 .cards {
     width: 320px;
@@ -95,11 +107,11 @@ picture img {
 
 .menu {
     width: 100%;
-    height: 50px;
+    height: 55px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    box-shadow: inset 0px 0px 4px #b1aeae;
+    box-shadow: inset 0px 0px 7px #b1aeae;
     background-color: #fff;
   }
   
@@ -108,17 +120,16 @@ picture img {
     visibility: hidden;
   }
 
-  .cards:hover .none, .cards:hover .titleProduct {
+  .cards:hover .none{
     visibility: visible;
     animation: aparecer .2s forwards;
   }
   
   .menu i {
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
   }
 
-.cart:hover,
 .openModal:hover {
     color:#8a8585
 }
@@ -136,7 +147,6 @@ picture img {
     display: grid;
     place-items: center;
     border-radius: 10px 10px 0 0;
-    visibility: hidden;
 }
 
 
@@ -153,6 +163,7 @@ picture img {
     opacity: 0;
     transition: .3s;
     pointer-events: none;
+    z-index: 100;
     --transform: translateX(-100vw);
     --transition: transform .3s;
 }
@@ -163,7 +174,9 @@ picture img {
     --transform: translateX(0);
 }
 
-.modal_contaniner {
+.modal_container {
+    display: flex;
+    flex-direction: column;
     margin: auto;
     width: 70%;
     max-width: 500px;
@@ -173,10 +186,17 @@ picture img {
     transition: var(--transition);
 }
 
-.imgProd {
-    height: 499px;
-    border-bottom: 1px solid #e0dada;
+.imagen {
+    height: 55%;
+    overflow: hidden;
 }
+
+.imgProd {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+}
+
 
 .detail {
     padding: 2.5rem 1.5rem;
@@ -187,7 +207,7 @@ picture img {
 }
 
 .detail {
-    max-height: 400px;
+    height: 40%;
     overflow-y: scroll;
 }
 
@@ -211,8 +231,9 @@ picture img {
 }
 
 .cantidad {
-    padding: 11px;
-    width: 30px;
+    text-align: center;
+    padding: 10px;
+    width: 40px;
     height: 100%;
     border: 1px solid #c0bdbd;
 }
@@ -223,8 +244,12 @@ picture img {
 
 .operador:hover,
 .buyBtn:hover{
-    background-color: #0D6EFD;
-    border: 1px solid #0D6EFD;
+    background-color: #F49E09;
+    border: 1px solid #F49E09;
+}
+
+#buyBtn {
+    background-color: #F49E09;
 }
 
 .buytStl {
@@ -237,18 +262,17 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.redHeart {
+/* .redHeart {
     color: red;
     animation-name: pulsation;
     animation-duration: .3s;
+} */
+
+.enCarrito {
+    color: #F49E09;
+    animation-name: pulsation;
+    animation-duration: .3s;
 }
-
-.redHeart:hover {
-    color: red;
-}
-
-
-
 
 
 footer {
@@ -307,4 +331,68 @@ footer {
         opacity: 1;
         margin-bottom: 1.6rem;
     }
+}
+
+
+
+
+@media screen and (max-width: 1280px) {
+    .cards:hover .none, .cards:hover .titleProduct {
+        animation: none;
+      }
+
+    .none {
+        width: 100%;
+        height: 70px;
+        visibility: visible;
+      }
+
+    .menu {
+        height: 40px;
+        margin: 10px auto;
+        width: 50%;
+    }
+
+    .titleProduct {
+        visibility: visible;
+    }
+
+    .modal_container{
+        height: 97%;
+    }
+}
+
+.center{
+    height: 5rem;
+    margin: 40px auto;  
+    }
+
+.form-control{
+    text-align: center;
+}
+.div-main-total{
+    display: flex;
+    justify-content: space-around;
+}
+
+.div-resultado{
+    position: sticky;
+    top: 5rem;
+    width: 40vw;
+    height: 20vh;
+    background-color: rgba(0, 0, 0, 0.527);
+    border-radius: 3rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#resultado{
+    height: 3rem;
+}
+
+input{
+    width: 5rem;
 }
