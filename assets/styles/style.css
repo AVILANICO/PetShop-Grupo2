@@ -116,13 +116,24 @@
 
   .section1 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     background-image: url("../images/PetAccessories2.jpg");
     background-size: cover;
     background-color: rgb(248, 197, 146);
-    min-height: 90vh;
+    min-height: 70vh;
+  }
+
+  .imageDiv1{
+    width: 17vw;
+    background-color: rgb(248, 197, 146);
+    border-radius: 3rem;
+  }
+
+  .farmaciaJuguetes{
+    display: flex;
+    flex-direction: column;
   }
 
   .darker{
@@ -153,11 +164,16 @@
     gap: 5rem;
   }
 
-  .imageDiv{
-    width: 30vw;
+  .imageDiv2{
+    width: 25vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Lilita One', cursive;
+  }
+  
+  .div2MUCHOTEXTO{
+    font-family: 'Lilita One', cursive;
   }
 
 /* WAVE */
@@ -177,7 +193,7 @@
   background: url(../images/wave.png) center;
   background-size: auto;
   position: absolute;
-  bottom: -6.4rem;
+  bottom: 5.6rem;
 }
   
   /* FOOTER */
@@ -185,9 +201,15 @@
   footer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: rgb(48, 52, 52);
     height: auto;
     margin-top: auto;
+  }
+
+  .deliveryPago{
+    display: flex;
+    flex-direction: row;
   }
 
   .imageFooter{
@@ -199,6 +221,14 @@
 
   .pFooter {
     flex-direction: row;
+    color: white;
+  }
+
+  .datosFooter{
+    color: white;
+  }
+
+  h3,h4{
     color: white;
   }
   
