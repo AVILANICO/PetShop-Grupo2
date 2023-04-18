@@ -54,6 +54,7 @@ function crearEventos(eventoSolo){
             <div class="card-body">
               <h5 class="card-title">${eventoSolo.producto}</h5>
               <div class = "div-precioBoton">
+                <p class="card-text"> Cantidad disponible: ${eventoSolo.disponibles}</p>
                 <p class="card-text"> Precio: $${eventoSolo.precio} </p>
                 <button class="btn border-warning ${btnClase}" data-id="${eventoSolo._id}" >Añadir al carrito</button>
               </div>

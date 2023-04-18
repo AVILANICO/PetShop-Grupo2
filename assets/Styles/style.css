@@ -1,5 +1,5 @@
 .center{
-  width: 100px;
+  height: 5rem;
   margin: 40px auto;  
   }
 .form-control{
@@ -10,4 +10,15 @@
 }
 .botonSignoMas{
   height: 2.2rem;
+}
+.div-main-total{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.resultado{
+  width: 60vw;
+}
+#resultado{
+  height: 3rem;
 }
