@@ -1,6 +1,6 @@
 // Referencias
 const $cardsContainer = document.getElementById('cardsContainer')
-
+let inCart = []
 
 // Peticion de data a la API
 fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
@@ -11,20 +11,18 @@ fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
         const modal = document.getElementById('modalbg')
         printCards(filteredPrts, $cardsContainer)
         
-        let openModal = document.querySelectorAll('.openModal')
-        let arrayHearts = document.querySelectorAll('.heart')
-        let arrayCarts = document.querySelectorAll('.cart')
-        
-
-
+        const openModal = document.querySelectorAll('.openModal')
+        const arrayHearts = document.querySelectorAll('.heart')
+        const arrayCarts = document.querySelectorAll('.cart')
 
         modalEvent(openModal, modal, products, modal)
-        
+        const modalContainer = document.querySelector('.modal_container') 
+
+
         changeColorIcon(arrayHearts, 'redHeart')
-        changeColorIcon(arrayCarts, 'enCarrito')
+        changeColorIcon(arrayCarts, filteredPrts, 'enCarrito')
 
 
-        console.log(products)
 
     }))
     .catch
@@ -44,7 +42,7 @@ function createCards(obj) {
                     <p class="titleProduct">${obj.producto}</p>
                     <div class="none">
                     <div class="menu">
-                        <i class='bx bx-cart-add cart'></i>
+                        <i class='bx bx-cart-add cart' id="${obj._id}"></i>
                         <i class='bx bx-info-circle openModal' id="${obj.producto}"></i>
                         <i class='bx bxs-heart back heart'></i>
                     </div>
@@ -53,10 +51,10 @@ function createCards(obj) {
 }
 
 function modalTemplate(obj) {
-    return `<div class="modal_contaniner">
+    return `<div class="modal_container">
     <div class="imagen">
       <i class='bx bx-x d-block text-end xToClose fs-1'></i>
-      <img class="w-100 imgProd" src="${obj.imagen}" alt="">
+      <img class=" imgProd" src="${obj.imagen}" alt="">
     </div>
     <div class="detail">
       <h2 class="titleModal">${obj.producto}</h2>
@@ -71,9 +69,9 @@ function modalTemplate(obj) {
           <input class="cantidad buytStl text-center" type="number" value="1" id="cantidad">
           <input class="operador mas buytStl border-start-0" type="button" value="+" id="suma">
         </div>
-          <button type="button" class="btn btn-secondary buyBtn w-50">Añadir al carrito</button>
+          <button type="button" class="btn w-50" id="buyBtn">Añadir al carrito</button>
       </div>
-      <p>En stock: <span data-value="${obj.disponibles}" id="enStock">${obj.disponibles}</span></p>
+      <p id="enStock">En stock: <span data-value="${obj.disponibles}" id="enStock">${obj.disponibles}</span></p>
     </div>
   </div>`
 }
@@ -86,20 +84,38 @@ function modalEvent(arrayEle, element, arrayData, container){
             let toPrint = modalTemplate(aux)
             container.innerHTML = toPrint
             document.body.classList.toggle('removeOverflow')
-            let xToCloseModal = document.querySelector('.xToClose')
+
+            const xToCloseModal = document.querySelector('.xToClose')
             xToCloseModal.addEventListener('click', ()=>{
                 container.classList.toggle('mostrarModal')
                 document.body.classList.toggle('removeOverflow')
             })
+            // const  enSotck = document.getElementById('enStock')
+            let cantidad = document.getElementById('cantidad')
+            const buyBtn = document.getElementById('buyBtn')
+            buyBtn.addEventListener('click', ()=> {
+                aux.disponibles <= cantidad.value ? alert('No hay productos suficientes') : console.log(aux)
+            })
+
             cantidadProductos()
         })
     })
 }
 
-function changeColorIcon(NodeList, addClase) {
+
+function changeColorIcon(NodeList, arrayData, addClase) {
     NodeList.forEach(ele => {
         ele.addEventListener('click', ()=>{
             ele.classList.toggle(addClase)
+            let aux = arrayData.find(pro => pro._id === ele.id)
+            let estaEnCarrito = inCart.some(i => i._id === aux._id)
+            if(estaEnCarrito){
+               inCart = inCart.filter(i => i._id != aux._id)
+               console.log(inCart)
+            }else {
+                inCart.push(aux)
+                console.log(inCart)
+            }
         })
     })
 }
