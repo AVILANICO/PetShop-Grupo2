@@ -113,7 +113,7 @@ picture img {
     visibility: hidden;
   }
 
-  .cards:hover .none, .cards:hover .titleProduct {
+  .cards:hover .none {
     visibility: visible;
     animation: aparecer .2s forwards;
   }
@@ -140,7 +140,6 @@ picture img {
     display: grid;
     place-items: center;
     border-radius: 10px 10px 0 0;
-    visibility: hidden;
 }
 
 

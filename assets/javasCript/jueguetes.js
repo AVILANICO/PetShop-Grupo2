@@ -1,6 +1,6 @@
 // Referencias
 const $cardsContainer = document.getElementById('cardsContainer')
-let inCart = []
+let inCart = JSON.parse(localStorage.getItem('proInCart')) || []
 
 // Peticion de data a la API
 fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
@@ -17,13 +17,8 @@ fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
 
         modalEvent(openModal, modal, products, modal)
         const modalContainer = document.querySelector('.modal_container') 
-
-
-        changeColorIcon(arrayHearts, 'redHeart')
+        
         changeColorIcon(arrayCarts, filteredPrts, 'enCarrito')
-
-
-
     }))
     .catch
 
@@ -38,13 +33,14 @@ function printCards(productArray, container) {
 }
 
 function createCards(obj) {
+    let inCart = JSON.parse(localStorage.getItem('proInCart')) || []
+    let btnClass = inCart.some(i => i._id === obj._id) ? 'enCarrito' : ''
     return `    <div class="cards d-flex align-items-center"  style="background-image: url(${obj.imagen});">
                     <p class="titleProduct">${obj.producto}</p>
                     <div class="none">
                     <div class="menu">
-                        <i class='bx bx-cart-add cart' id="${obj._id}"></i>
+                        <i class='bx bx-cart-add cart ${btnClass}'  id="${obj._id}"></i>
                         <i class='bx bx-info-circle openModal' id="${obj.producto}"></i>
-                        <i class='bx bxs-heart back heart'></i>
                     </div>
                     </div>
                 </div>`
@@ -94,7 +90,14 @@ function modalEvent(arrayEle, element, arrayData, container){
             let cantidad = document.getElementById('cantidad')
             const buyBtn = document.getElementById('buyBtn')
             buyBtn.addEventListener('click', ()=> {
-                aux.disponibles <= cantidad.value ? alert('No hay productos suficientes') : console.log(aux)
+                aux.disponibles <= cantidad.value ? alert('No hay productos suficientes') : null
+                let estaEnCarrito = inCart.some(i => i._id === aux._id)
+                if(estaEnCarrito){
+                   inCart = inCart.filter(i => i._id != aux._id)
+                }else {
+                    inCart.push(aux)
+                }
+                localStorage.setItem('proInCart', JSON.stringify(inCart))
             })
 
             cantidadProductos()
@@ -111,11 +114,11 @@ function changeColorIcon(NodeList, arrayData, addClase) {
             let estaEnCarrito = inCart.some(i => i._id === aux._id)
             if(estaEnCarrito){
                inCart = inCart.filter(i => i._id != aux._id)
-               console.log(inCart)
+              
             }else {
                 inCart.push(aux)
-                console.log(inCart)
             }
+            localStorage.setItem('proInCart', JSON.stringify(inCart))
         })
     })
 }
