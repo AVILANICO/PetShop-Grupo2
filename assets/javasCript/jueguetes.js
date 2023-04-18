@@ -16,7 +16,6 @@ fetch( 'https://mindhub-xj03.onrender.com/api/petshop' )
         const arrayCarts = document.querySelectorAll('.cart')
 
         modalEvent(openModal, modal, products, modal)
-        const modalContainer = document.querySelector('.modal_container') 
         
         changeColorIcon(arrayCarts, filteredPrts, 'enCarrito')
     }))
@@ -47,6 +46,14 @@ function createCards(obj) {
 }
 
 function modalTemplate(obj) {
+    let menosde5 = ''
+    // obj.disponibles <= 5 && obj.disponibles > 0 ?  menosde5 = '¡Ultimos Productos!' : obj.disponibles == 0 ? menosde5 = '¡No hay productos disponibles!'
+    if(obj.disponibles <= 5 && obj.disponibles > 0){
+    menosde5 = '¡Ultimos Productos!' 
+    }
+    else if(obj.disponibles == 0){
+    menosde5 = '¡No hay productos disponibles!'
+    }
     return `<div class="modal_container">
     <div class="imagen">
       <i class='bx bx-x d-block text-end xToClose fs-1'></i>
@@ -59,15 +66,9 @@ function modalTemplate(obj) {
       <p class="description">
       ${obj.descripcion}
       </p>
-      <div class="compraSection gap-4 my-5">
-        <div class="cantidades d-flex" >
-          <input class="operador buytStl border-end-0" type="button" value="-" id="resta">
-          <input class="cantidad buytStl text-center" type="number" value="1" id="cantidad">
-          <input class="operador mas buytStl border-start-0" type="button" value="+" id="suma">
-        </div>
-          <button type="button" class="btn w-50" id="buyBtn">Añadir al carrito</button>
-      </div>
-      <p id="enStock">En stock: <span data-value="${obj.disponibles}" id="enStock">${obj.disponibles}</span></p>
+      <div class="compraSection gap-4">
+      <p id="enStock" class="m-0 text-center ">Unidades disponibles: <span class="text-primary" data-value="${obj.disponibles}"> ${obj.disponibles} </span></p>
+      <h5 class="m-0 text-danger text-center">${menosde5}</h5>
     </div>
   </div>`
 }
@@ -87,20 +88,7 @@ function modalEvent(arrayEle, element, arrayData, container){
                 document.body.classList.toggle('removeOverflow')
             })
             // const  enSotck = document.getElementById('enStock')
-            let cantidad = document.getElementById('cantidad')
-            const buyBtn = document.getElementById('buyBtn')
-            buyBtn.addEventListener('click', ()=> {
-                aux.disponibles <= cantidad.value ? alert('No hay productos suficientes') : null
-                let estaEnCarrito = inCart.some(i => i._id === aux._id)
-                if(estaEnCarrito){
-                   inCart = inCart.filter(i => i._id != aux._id)
-                }else {
-                    inCart.push(aux)
-                }
-                localStorage.setItem('proInCart', JSON.stringify(inCart))
-            })
-
-            cantidadProductos()
+            
         })
     })
 }
@@ -120,18 +108,5 @@ function changeColorIcon(NodeList, arrayData, addClase) {
             }
             localStorage.setItem('proInCart', JSON.stringify(inCart))
         })
-    })
-}
-
-function cantidadProductos() {
-    let operadorMas = document.getElementById('suma')
-    let operadorMenos = document.getElementById('resta')
-    let cantidad = document.getElementById('cantidad')
-    let enStock = document.getElementById('enStock')
-    operadorMas.addEventListener('click',()=>{
-        cantidad.value++
-    })
-    operadorMenos.addEventListener('click',()=>{
-        cantidad.value >= 1 ? cantidad.value--: cantidad.value = 0
     })
 }
