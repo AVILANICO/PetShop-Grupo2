@@ -3,10 +3,6 @@ const $contenedor = document.getElementById('contenedor-eventos');
 const $resultado = document.getElementById('resultados')
 const $cantProductos = document.getElementById('cantProductos')
 
-
-
-
-
 let arregloProductos;
 
 //paso el string a un array
@@ -19,6 +15,7 @@ fetch('https://mindhub-xj03.onrender.com/api/petshop')
       template(listaCarrito, $contenedor)
       // precioTotalCarrito(listaCarrito)
       
+      // $contenedor.addEventListener("click", funcionCarrito)
 
       let operadorMas = [...document.querySelectorAll('.suma')]
       let operadorMenos = [...document.querySelectorAll('.resta')]
@@ -68,7 +65,7 @@ const funcionCarrito = (e) => {
   }
 }
 
-$contenedor.addEventListener("click", funcionCarrito)
+
 
 
 let precioTotal;
@@ -114,14 +111,46 @@ function crearEventos(eventoSolo){
 }
 
 function borrarNota(id) {
-    
+  
+    if(id){
+      const estaEnCarrito = listaCarrito.some(prod => prod._id == id)
+      if(estaEnCarrito){
+        //esto se hace solo si esta en el carrito
+        //quiero que se me traiga solo los productos que tienen el _id != al id.
+        listaCarrito = listaCarrito.filter(prod => prod._id != id)
+      }else{
+        //esto se hace solo si no esta en el carrito
+        const evento = arregloProductos.find(e => e._id == id)
+        listaCarrito.push(evento)
+      }
+      //esto se hace si o si
+      //paso el array a un string (JSON)
+      // const json = JSON.stringify(listaCarrito)
+      localStorage.setItem('proInCart', JSON.stringify(listaCarrito))
+    }
+
     let arraySinNota = listaCarrito.filter(obj => obj._id !== id)
     
     listaCarrito = arraySinNota
-    
-    console.log(arraySinNota);
-
     template(listaCarrito, $contenedor)
+    let operadorMas = [...document.querySelectorAll('.suma')]
+      let operadorMenos = [...document.querySelectorAll('.resta')]
+      let cantidad = [...document.querySelectorAll('.cantidad')]
+
+      for (const menos of operadorMenos) {
+        menos.addEventListener("click", ()=>{
+          let cuadroEncontrado = cantidad.find(cuadro=> cuadro.id==menos.id)
+          console.log(cuadroEncontrado);
+          cuadroEncontrado.value--
+        })
+      }
+      for (const mas of operadorMas) {
+        mas.addEventListener("click", ()=>{
+          let cuadroEncontrado = cantidad.find(cuadro=> cuadro.id==mas.id)
+          console.log(cuadroEncontrado);
+          cuadroEncontrado.value++
+        })
+      }
 }
 
 
