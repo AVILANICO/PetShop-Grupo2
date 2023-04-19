@@ -1,12 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farmacia</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../images/LogoPerritoMalvado.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/mainStyle.css" />
+    <title>Jugueteria - Perrito Malvado</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="content">
+          <div class="logo">
+            <img id="img-logo" src="../images/LogoPerritoMalvado.png" alt="" />
+          </div>
+          <ul class="menu-list">
+            <div class="icon cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+            <li class="nav-anchor-active">
+              <a href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/farmacia.html">Farmacia</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/juguetes.html">Jugueteria</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/contacto.html">Contacto</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/carrito.html">Carrito</a>
+            </li>
+          </ul>
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="farmacia" style="width: 100%">
+        <h1>FARMACIA</h1>
+        <div class="search">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Buscar"
+            aria-label="Search"
+            id="search"
+          />
+        </div>
+      </div>
+      </div>
+
+      <!-- CARDS -->
+      <section
+        class="cards-container d-flex justify-content-center gap-5 py-5 row"
+        id="cardsContainer"
+      ></section>
+
+      <!-- MODAL -->
+
+      <section class="modalbg" id="modalbg"></section>
+    </main>
+    <footer>
+      <div class="section-footer-1">
+        <img
+          class="image-footer"
+          src="../images/deliveryTruck.png"
+          alt="camion-deli"
+        />
+        <div class="text-footer">
+          <h3>Envio Gratuito</h3>
+          <p>
+            Entrega rapida, fiable y gratis. <br />De lunes a viernes. <br />
+            Disponible en todo Buenos Aires.
+          </p>
+        </div>
+      </div>
+      <div class="section-footer-1">
+        <img
+          class="image-footer"
+          src="../images/atmCard.png"
+          alt="camion-deli"
+        />
+        <div class="text-footer">
+          <h3>Formas de pago</h3>
+          <p>
+            ¡Efectivo, <br />
+            debito y <br />
+            transferencia!
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://kit.fontawesome.com/b991695b3d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="../javasCript/farmacia.js"></script>
+    <script src="../javasCript/navbar.js"></script>
+  </body>
 </html>
