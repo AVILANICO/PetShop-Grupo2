@@ -1,0 +1,415 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(../img/backgroundImg.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+.removeOverflow {
+  overflow: hidden;
+}
+
+/* NAVBAR */
+
+nav{
+  background-color: #393838;
+  height: 130px;
+}
+
+
+/* TITULO */
+
+.farmacia {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 70px;
+  letter-spacing: 5px;
+  margin-top: 5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.farmacia h1 {
+  font-size: 60px;
+}
+  
+
+.logo {
+ width: 200px;
+ height: 200px; 
+ position: absolute;
+ left: 50%;
+ top: 30%;
+}
+
+
+
+picture{
+  display: inline-block;
+  width: 100%;
+  height: 500px;
+}
+
+picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blackWave {
+  width: 100%;
+  height: 25px;
+  background: url(../img/blackWave.png) center;
+  background-size: auto;
+  position: absolute;
+  bottom: -12px;
+}
+
+.wave {
+  width: 100%;
+  height: 25px;
+  background: url(../img/wave.png) center;
+  background-size: auto;
+  position: absolute;
+  bottom: -12px;
+}
+
+/* CARDS JUGUETERIA */
+
+.search{
+  width: 40%;
+}
+
+.cards {
+  width: 320px;
+  height: 500px;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: center no-repeat #ffffff7e;
+  background-size: 100% 70%;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 12px #b1aeae;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cards-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.menu {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: inset 0px 0px 7px #b1aeae;
+  background-color: #fff;
+}
+
+.none {
+  width: 100%;
+  visibility: hidden;
+}
+
+.cards:hover .none{
+  visibility: visible;
+  animation: aparecer .2s forwards;
+}
+
+.menu i {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.openModal:hover {
+  color:#8a8585
+}
+
+.titleProduct {
+  width: 100%;
+  height: 75px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  letter-spacing: 1.5px;
+  color: #fff;
+  background-color: #F49E09;
+  padding: 0 8px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px 10px 0 0;
+}
+
+
+/* MODAL */
+
+.modalbg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #1111119b;
+  display: flex;
+  opacity: 0;
+  transition: .3s;
+  pointer-events: none;
+  z-index: 100;
+  --transform: translateX(-100vw);
+  --transition: transform .3s;
+}
+
+.mostrarModal {
+  opacity: 1;
+  pointer-events: unset;
+  --transform: translateX(0);
+}
+
+.modal_container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 70%;
+  max-width: 500px;
+  height: 90%;
+  background-color: #fff;
+  transform: var(--transform);
+  transition: var(--transition);
+}
+
+.imagen {
+  height: 60%;
+  text-align: center;
+  position: relative;
+}
+
+.imgProd {
+  text-align: center;
+  height: 90%;
+  object-fit: cover;
+}
+
+
+.detail {
+  padding: 2.5rem 1.5rem;
+}
+
+.xToClose::before {
+  cursor: pointer;
+}
+
+.detail {
+  height: 40%;
+  overflow-y: scroll;
+}
+
+.titleModal {
+  color: #393838;
+  text-align: center;
+  font-family: 'Roboto Serif', serif;
+  font-weight: bold;
+}
+
+.compraSection {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  font-size: 25px;
+  margin: 48px 0 0 0;
+}
+
+.operador {
+  padding: 10px 7px;
+  cursor: pointer;
+  height: 100%;
+  line-height: .9;
+  border: 1px solid #c0bdbd;
+}
+
+.cantidad {
+  text-align: center;
+  padding: 10px;
+  width: 40px;
+  height: 100%;
+  border: 1px solid #c0bdbd;
+}
+
+.cantidades {
+  height: 98%;
+}
+
+.operador:hover,
+.buyBtn:hover{
+  background-color: #F49E09;
+  border: 1px solid #F49E09;
+}
+
+#buyBtn {
+  background-color: #F49E09;
+}
+
+.buytStl {
+  background-color: #f1f1f1;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#enStock {
+  font-family: 'Roboto Serif', serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.redHeart {
+  color: red;
+  animation-name: pulsation;
+  animation-duration: .3s;
+}
+
+.enCarrito {
+  color: #F49E09;
+  animation-name: pulsation;
+  animation-duration: .3s;
+}
+
+
+footer {
+  background-color: #393838;
+  height: 300px;
+  margin-top: 4rem;
+}
+
+.waveFooter {
+  width: 100%;
+  height: 25px;
+  background: url(../img/wave.png) center;
+  background-size: auto;
+  position: absolute;
+  top: -13px;
+}
+
+
+
+
+@keyframes pulsation{
+  0%{
+      transform: scale(1);
+  }
+  25%{
+      transform: scale(1.2);
+  }
+  50%{
+      transform: scale(1);
+  }
+  75%{
+      transform: scale(1.2);
+  }
+  100%{
+      transform: scale(1);
+  }
+}
+
+@keyframes aparecer {
+  0% {
+      opacity: 0;
+  }
+  25% {
+      opacity: .2;
+      margin-bottom: 0.5rem;
+  }
+  50% {
+      opacity: .5;
+      margin-bottom: 1rem;
+  }
+  75% {
+      opacity: .7;
+      margin-bottom: 1.4rem;
+  }
+  100% {
+      opacity: 1;
+      margin-bottom: 1.6rem;
+  }
+}
+
+
+
+
+@media screen and (max-width: 1280px) {
+  .cards:hover .none, .cards:hover .titleProduct {
+      animation: none;
+  }
+
+  .none {
+      width: 100%;
+      height: 70px;
+      visibility: visible;
+  }
+
+  .menu {
+      height: 40px;
+      margin: 10px auto;
+      width: 50%;
+  }
+
+  .titleProduct {
+      visibility: visible;
+  }
+
+  .modal_container{
+      height: 97%;
+  }
+}
+
+.center{
+  height: 5rem;
+  margin: 40px auto;  
+  }
+
+.form-control{
+  text-align: center;
+}
+.div-main-total{
+  display: flex;
+  justify-content: space-around;
+}
+
+.div-resultado{
+  position: sticky;
+  top: 5rem;
+  width: 40vw;
+  height: 20vh;
+  background-color: rgba(0, 0, 0, 0.527);
+  border-radius: 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#resultado{
+  height: 3rem;
+}
+
+input{
+  width: 5rem;
+}
+
+.ultimas{
+  color: red;
+  font-weight: bold;
+}
