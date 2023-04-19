@@ -1,12 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../images/LogoPerritoMalvado.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../styles/mainStyle.css" />
+    <title>Contacto - Perrito Malvado</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="content">
+          <div class="logo">
+            <img id="img-logo" src="../images/LogoPerritoMalvado.png" alt="" />
+          </div>
+          <ul class="menu-list">
+            <div class="icon cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+            <li class="nav-anchor-active">
+              <a href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/farmacia.html">Farmacia</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/juguetes.html">Jugueteria</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/contacto.html">Contacto</a>
+            </li>
+            <li class="nav-anchor-normal">
+              <a href="../pages/carrito.html">Carrito</a>
+            </li>
+          </ul>
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <div class="contact_data2">
+          <ul>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              <strong>Paraguay 2334 5 F </strong>
+            </li>
+            <li>
+              <i class="fa-solid fa-envelope"></i>
+              <strong
+                ><a
+                  class="contact-anchor"
+                  href="mailto:perritomalvado@gmail.com"
+                  >perrito@malvado.com</a
+                ></strong
+              >
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+              <strong
+                ><a class="contact-anchor" href="tel:+54 1111 111111"
+                  >+54 1111 111111</a
+                ></strong
+              >
+            </li>
+          </ul>
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13136.972381626474!2d-58.41964941740907!3d-34.59801391094825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca9158e82c41%3A0x6a1cd58fa7e6383d!2sParaguay%202334%205%20f%2C%20C1121ABL%20CABA!5e0!3m2!1ses!2sar!4v1681868401847!5m2!1ses!2sar"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+        <div class="contact_data">
+          <h2>Contacto</h2>
+
+          <form id="myForm" action="#">
+            <label for="nameInput">Nombre</label>
+            <input type="text" id="nameInput" placeholder="Ej: Nelson" />
+
+            <label for="emailInput">Email</label>
+            <input
+              type="email"
+              id="emailInput"
+              placeholder="Ej: usuario@mail.com"
+            />
+
+            <label for="petSelect">Mascotas</label>
+            <div class="select">
+              <select id="petSelect">
+                <option value="">Selecciona una opción</option>
+                <option value="Perro">Perro</option>
+                <option value="Gato">Gato</option>
+              </select>
+            </div>
+
+            <label for="messageTextarea">Mensaje</label>
+            <textarea id="messageTextarea" cols="30" rows="5"></textarea>
+
+            <button type="submit">Enviar</button>
+          </form>
+
+          <script>
+            const form = document.getElementById("myForm");
+            const nameInput = document.getElementById("nameInput");
+            const emailInput = document.getElementById("emailInput");
+            const petSelect = document.getElementById("petSelect");
+            const messageTextarea = document.getElementById("messageTextarea");
+
+            form.addEventListener("submit", (event) => {
+              event.preventDefault();
+
+              if (
+                nameInput.value === "" ||
+                emailInput.value === "" ||
+                petSelect.value === "" ||
+                messageTextarea.value === ""
+              ) {
+                showAlert(
+                  "Error",
+                  "Por favor, rellena todos los campos",
+                  "error"
+                );
+              } else {
+                showAlert(
+                  `Éxito, ${nameInput.value}.`,
+                  "Tu mensaje ha sido enviado correctamente.",
+                  "success"
+                );
+                form.reset();
+              }
+            });
+
+            function showAlert(title, message, type) {
+              const alert = document.createElement("div");
+              alert.classList.add("alert");
+              alert.classList.add(type);
+
+              const alertTitle = document.createElement("h3");
+              alertTitle.textContent = title;
+
+              const alertMessage = document.createElement("p");
+              alertMessage.textContent = message;
+
+              const closeButton = document.createElement("button");
+              closeButton.textContent = "Cerrar";
+              closeButton.addEventListener("click", () => {
+                alert.remove();
+              });
+
+              alert.appendChild(alertTitle);
+              alert.appendChild(alertMessage);
+              alert.appendChild(closeButton);
+
+              document.body.appendChild(alert);
+            }
+          </script>
+
+          <style>
+            .alert {
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              padding: 20px;
+              background-color: white;
+              border: 1px solid rgba(255, 185, 184, 1);
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+              z-index: 1000;
+            }
+
+            .alert h3 {
+              margin-top: 0;
+              color: rgba(255, 185, 184, 1);
+              font-size: larger;
+            }
+
+            .alert p {
+              margin-bottom: 0;
+              color: rgba(255, 185, 184, 1);
+              font-size: large;
+            }
+
+            .alert button {
+              display: block;
+              margin: 20px auto 0;
+              padding: 5px 10px;
+              background-color: rgba(255, 185, 184, 1);
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            #petSelect {
+              color: #ff7b79;
+            }
+          </style>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="section-footer-1">
+        <img
+          class="image-footer"
+          src="../images/deliveryTruck.png"
+          alt="camion-deli"
+        />
+        <div class="text-footer">
+          <h3>Envio Gratuito</h3>
+          <p>
+            Entrega rapida, fiable y gratis. <br />De lunes a viernes. <br />
+            Disponible en todo Buenos Aires.
+          </p>
+        </div>
+      </div>
+      <div class="section-footer-1">
+        <img
+          class="image-footer"
+          src="../images/atmCard.png"
+          alt="camion-deli"
+        />
+        <div class="text-footer">
+          <h3>Formas de pago</h3>
+          <p>
+            ¡Efectivo, <br />
+            debito y <br />
+            transferencia!
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://kit.fontawesome.com/b991695b3d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../javasCript/navbar.js"></script>
+  </body>
 </html>

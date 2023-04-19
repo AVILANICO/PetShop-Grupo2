@@ -59,7 +59,7 @@ function filterByText(eventArray, text) {
 }
 
 function filter(array) {
-  return array.filter((i) => i.categoria === "farmacia");
+  return array.filter((i) => i.categoria === "jugueteria");
 }
 
 function printCards(productArray, container) {
